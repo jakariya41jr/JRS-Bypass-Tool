@@ -3,13 +3,13 @@ javascript:(async function() {
     // ║  AUTHOR: Md Jakariya Hasan                                ║
     // ║                                                           ║
     // ║  JRS BYPASS TOOL                                          ║
-    // ║  CREDITS: Soyon Ahmed (@soyon41)                              ║
+    // ║  CREDITS: Soyon Y (@soyon41)                              ║
     // ║  PORTFOLIO: https://jakariya41jr.xyz/                     ║
     // ═════════════════════════════════════════════════════════════
 
     const CONFIG = {
         version: "3.0.0 (Pro)",
-        bypassServer: "https://lol.a2mbd3.workers.dev" // ডেভলপারের মূল বাইপাস সার্ভার
+        bypassServer: "https://lol.a2mbd3.workers.dev"
     };
 
     let USER_DATA = null;
@@ -24,10 +24,9 @@ javascript:(async function() {
     async function fetchUserData() {
         DBG.log('USERS', 'API verification disabled. Using hardcoded developer data.');
         
-        // সার্ভারের বদলে এখানেই আপনার ডেটা সেট করা হয়েছে
         USER_DATA = {
             name: "Md Jakariya Hasan",
-            password: "jrs41",  // <-- আপনার নতুন নির্ধারিত পাসওয়ার্ড
+            password: "jrs41",  // নির্ধারিত পাসওয়ার্ড
             website: "https://jakariya41jr.xyz/",
             banned: 0,
             creator: "@soyon41",
@@ -38,7 +37,6 @@ javascript:(async function() {
 
     // ═══════════════════ UI & STYLES (NEON GLOW) ═══════════════════
     function injectStyles() {
-        // যদি আগে থেকে স্টাইল থাকে, তবে তা রিমুভ করে নতুন করে বসাবে
         if (document.getElementById('jrs-style')) return; 
 
         const style = document.createElement('style');
@@ -77,7 +75,6 @@ javascript:(async function() {
             const btn = document.getElementById('jrs-submit');
             const inp = document.getElementById('jrs-pass');
 
-            // অটোমেটিক ফোকাস করবে যাতে ক্লিক না করেই টাইপ করা যায়
             inp.focus();
 
             const checkAuth = () => {
@@ -122,21 +119,19 @@ javascript:(async function() {
         
         const currentUrl = window.location.href;
         
-        // এখানে আপনার আসল বাইপাস লজিক কাজ করবে
-        if (currentUrl.includes('vplink.in') || currentUrl.includes('aincrad') || currentUrl.includes('powercheats')) {
+        // নতুন সাইটগুলোর ডোমেইন এখানে যুক্ত করা হয়েছে
+        if (currentUrl.includes('aincradmods.com') || currentUrl.includes('rodaemotor.com') || currentUrl.includes('vplink.in')) {
             DBG.log('SCANNER', 'Target detected. Extracting tokens...');
             
-            // UI তে একটি হ্যাকিং টাইপ অ্যানিমেশন দেখানোর জন্য
             const statusDiv = document.createElement('div');
             statusDiv.style.cssText = "position: fixed; bottom: 20px; right: 20px; background: #000; border: 1px solid #00ffcc; color: #00ffcc; padding: 10px 20px; border-radius: 5px; font-family: monospace; z-index: 999999; box-shadow: 0 0 10px #00ffcc;";
-            statusDiv.innerText = "⚙️ jrs is bypassing... Please wait.";
+            statusDiv.innerText = "⚙️ JRS is bypassing... Please wait.";
             document.body.appendChild(statusDiv);
             
-            // --- আপনার স্ক্র্যাপিং এবং TOTP লজিক এখানে বসবে ---
-            // (বর্তমানে শুধুমাত্র ডেমো অ্যালার্ট দেওয়া আছে)
+            // --- আপনার বাইপাস লজিক এখানে যুক্ত হবে ---
             
             setTimeout(() => {
-                statusDiv.innerText = "✅ Bypass Successful! Redirecting...";
+                statusDiv.innerText = "✅ Bypass Successful!";
                 setTimeout(() => statusDiv.remove(), 2000);
             }, 2500);
 
@@ -152,7 +147,7 @@ javascript:(async function() {
         DBG.log('SYS', 'Initializing jrs Engine...');
         
         injectStyles();
-        await fetchUserData(); // এখন এটি ইনস্ট্যান্ট কাজ করবে
+        await fetchUserData();
         
         const isAuthenticated = await showAuthUI();
         
@@ -162,6 +157,5 @@ javascript:(async function() {
         }
     }
 
-    // কোডটি রান করা হলো
     init();
 })();
