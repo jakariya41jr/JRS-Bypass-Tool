@@ -3,39 +3,31 @@ javascript:(async function() {
     // ║  AUTHOR: Md Jakariya Hasan                                ║
     // ║                                                           ║
     // ║  JRS BYPASS TOOL                                          ║
-    // ║  CREDITS: Soyon Ahmed (@soyon41)                              ║
+    // ║  CREDITS: Soyon Y (@soyon41)                              ║
     // ║  PORTFOLIO: https://jakariya41jr.xyz/                     ║
     // ═════════════════════════════════════════════════════════════
 
     const CONFIG = {
-        version: "3.0.0 (Pro)",
+        version: "3.0.1 (Pro)",
         bypassServer: "https://lol.a2mbd3.workers.dev"
     };
 
     let USER_DATA = null;
 
-    // কনসোল ডিবাগিং এর জন্য উন্নত লগ সিস্টেম
     const DBG = {
         log: (tag, msg) => console.log(`[%c${tag}%c] ${msg}`, 'color: #00ffcc; font-weight: bold;', 'color: inherit;'),
         error: (tag, msg) => console.error(`[%c${tag}%c] ${msg}`, 'color: #ff0000; font-weight: bold;', 'color: inherit;')
     };
 
-    // ═══════════════════ USER DATA FETCH (API DISABLED) ═══════════════════
     async function fetchUserData() {
-        DBG.log('USERS', 'API verification disabled. Using hardcoded developer data.');
-        
         USER_DATA = {
             name: "Md Jakariya Hasan",
-            password: "jrs41",  // নির্ধারিত পাসওয়ার্ড
-            website: "https://jakariya41jr.xyz/",
-            banned: 0,
-            creator: "@soyon41",
-            dev: "Md Jakariya Hasan"
+            password: "jrs41",
+            website: "https://jakariya41jr.xyz/"
         };
         return true;
     }
 
-    // ═══════════════════ UI & STYLES (NEON GLOW) ═══════════════════
     function injectStyles() {
         if (document.getElementById('jrs-style')) return; 
 
@@ -56,7 +48,6 @@ javascript:(async function() {
         document.head.appendChild(style);
     }
 
-    // ═══════════════════ AUTHENTICATION SYSTEM ═══════════════════
     function showAuthUI() {
         return new Promise((resolve) => {
             const div = document.createElement('div');
@@ -74,37 +65,22 @@ javascript:(async function() {
 
             const btn = document.getElementById('jrs-submit');
             const inp = document.getElementById('jrs-pass');
-
             inp.focus();
 
             const checkAuth = () => {
-                const enteredKey = inp.value.trim();
-                if (enteredKey === USER_DATA.password) {
+                if (inp.value.trim() === USER_DATA.password) {
                     div.innerHTML = `
                         <h2 style="color:#00ff55; text-shadow: 0 0 10px #00ff55;">ACCESS GRANTED</h2>
                         <p style="color:#aaa; font-size: 14px;">Welcome, ${USER_DATA.name}</p>
-                        <p style="color:#00ffcc; font-size: 12px; margin-top: 15px;">Initializing core protocols...</p>
                     `;
                     setTimeout(() => {
                         div.style.opacity = '0';
-                        setTimeout(() => {
-                            div.remove();
-                            resolve(true);
-                        }, 500);
-                    }, 1500);
+                        setTimeout(() => { div.remove(); resolve(true); }, 500);
+                    }, 1000);
                 } else {
                     inp.style.border = "1px solid #ff0044";
-                    inp.style.boxShadow = "0 0 10px #ff0044";
                     inp.value = "";
                     inp.placeholder = "Incorrect Key!";
-                    btn.innerText = "Try Again";
-                    
-                    setTimeout(() => {
-                        inp.style.border = "1px solid #00ffcc";
-                        inp.style.boxShadow = "none";
-                        inp.placeholder = "Enter Auth Key";
-                        btn.innerText = "Unlock Bypass";
-                    }, 2000);
                 }
             };
 
@@ -113,46 +89,51 @@ javascript:(async function() {
         });
     }
 
-    // ═══════════════════ CORE BYPASS SCANNER ═══════════════════
     async function startBypass() {
-        DBG.log('CORE', 'Starting Target Detection...');
-        
         const currentUrl = window.location.href;
         
-        // নতুন সাইটগুলোর ডোমেইন এখানে যুক্ত করা হয়েছে
-        if (currentUrl.includes('aincradmods.com') || currentUrl.includes('rodaemotor.com') || currentUrl.includes('vplink.in')) {
-            DBG.log('SCANNER', 'Target detected. Extracting tokens...');
+        // UI স্ট্যাটাস দেখানোর জন্য নোটিফিকেশন বক্স
+        const statusDiv = document.createElement('div');
+        statusDiv.style.cssText = "position: fixed; bottom: 20px; right: 20px; background: #000; border: 1px solid #00ffcc; color: #00ffcc; padding: 10px 20px; border-radius: 5px; font-family: monospace; z-index: 999999; box-shadow: 0 0 10px #00ffcc;";
+        statusDiv.innerText = "⚙️ JRS Auto-Clicker Running...";
+        document.body.appendChild(statusDiv);
+
+        if (currentUrl.includes('rodaemotor.com')) {
+            DBG.log('SCANNER', 'Rodaemotor target detected. Auto-clicking CONTINUAR...');
             
-            const statusDiv = document.createElement('div');
-            statusDiv.style.cssText = "position: fixed; bottom: 20px; right: 20px; background: #000; border: 1px solid #00ffcc; color: #00ffcc; padding: 10px 20px; border-radius: 5px; font-family: monospace; z-index: 999999; box-shadow: 0 0 10px #00ffcc;";
-            statusDiv.innerText = "⚙️ JRS is bypassing... Please wait.";
-            document.body.appendChild(statusDiv);
+            // প্রতি ১.৫ সেকেন্ড পরপর পেজে "CONTINUAR" বাটন খুঁজে ক্লিক করবে
+            setInterval(() => {
+                const elements = Array.from(document.querySelectorAll('button, a, div, span'));
+                const targetBtn = elements.find(el => el.innerText && el.innerText.trim().toUpperCase() === 'CONTINUAR');
+                
+                if (targetBtn) {
+                    targetBtn.click();
+                    DBG.log('ACTION', 'Clicked CONTINUAR successfully!');
+                }
+            }, 1500);
+
+        } else if (currentUrl.includes('aincradmods.com')) {
+            DBG.log('SCANNER', 'Aincradmods target detected...');
             
-            // --- আপনার বাইপাস লজিক এখানে যুক্ত হবে ---
-            
-            setTimeout(() => {
-                statusDiv.innerText = "✅ Bypass Successful!";
-                setTimeout(() => statusDiv.remove(), 2000);
-            }, 2500);
+            setInterval(() => {
+                const elements = Array.from(document.querySelectorAll('button, a, div'));
+                const targetBtn = elements.find(el => el.innerText && (el.innerText.includes('Continue') || el.innerText.includes('Get Key')));
+                if (targetBtn) {
+                    targetBtn.click();
+                }
+            }, 1500);
 
         } else {
-            DBG.error('SCANNER', 'No supported link found on this page.');
-            alert(`[JRS]\n\nDeveloper: Md Jakariya Hasan\nError: No bypassable link found on this page!`);
+            statusDiv.innerText = "❌ No supported link found!";
+            setTimeout(() => statusDiv.remove(), 3000);
         }
     }
 
-    // ═══════════════════ INITIALIZATION ═══════════════════
     async function init() {
         console.clear();
-        DBG.log('SYS', 'Initializing jrs Engine...');
-        
         injectStyles();
         await fetchUserData();
-        
-        const isAuthenticated = await showAuthUI();
-        
-        if (isAuthenticated) {
-            DBG.log('SYS', 'Authentication successful. Loading modules...');
+        if (await showAuthUI()) {
             await startBypass();
         }
     }
