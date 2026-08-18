@@ -3,12 +3,12 @@ javascript:(async function() {
     // ║  AUTHOR: Md Jakariya Hasan                                ║
     // ║                                                           ║
     // ║  JRS BYPASS TOOL                                          ║
-    // ║  CREDITS: Soyon Y (@soyon41)                              ║
+    // ║  CREDITS: Soyon Ahmed (@soyon41)                              ║
     // ║  PORTFOLIO: https://jakariya41jr.xyz/                     ║
     // ═════════════════════════════════════════════════════════════
 
     const CONFIG = {
-        version: "3.0.1 (Pro)",
+        version: "3.0.2 (Pro)",
         bypassServer: "https://lol.a2mbd3.workers.dev"
     };
 
@@ -92,40 +92,29 @@ javascript:(async function() {
     async function startBypass() {
         const currentUrl = window.location.href;
         
-        // UI স্ট্যাটাস দেখানোর জন্য নোটিফিকেশন বক্স
-        const statusDiv = document.createElement('div');
-        statusDiv.style.cssText = "position: fixed; bottom: 20px; right: 20px; background: #000; border: 1px solid #00ffcc; color: #00ffcc; padding: 10px 20px; border-radius: 5px; font-family: monospace; z-index: 999999; box-shadow: 0 0 10px #00ffcc;";
-        statusDiv.innerText = "⚙️ JRS Auto-Clicker Running...";
-        document.body.appendChild(statusDiv);
-
-        if (currentUrl.includes('rodaemotor.com')) {
-            DBG.log('SCANNER', 'Rodaemotor target detected. Auto-clicking CONTINUAR...');
+        // tarviral.com এবং অন্যান্য ডোমেইন এখানে যুক্ত করা হলো
+        if (currentUrl.includes('tarviral.com') || currentUrl.includes('rodaemotor.com') || currentUrl.includes('aincradmods.com') || currentUrl.includes('vplink.in')) {
+            DBG.log('SCANNER', 'Target detected. Running Auto-Clicker...');
             
-            // প্রতি ১.৫ সেকেন্ড পরপর পেজে "CONTINUAR" বাটন খুঁজে ক্লিক করবে
+            const statusDiv = document.createElement('div');
+            statusDiv.style.cssText = "position: fixed; bottom: 20px; right: 20px; background: #000; border: 1px solid #00ffcc; color: #00ffcc; padding: 10px 20px; border-radius: 5px; font-family: monospace; z-index: 999999; box-shadow: 0 0 10px #00ffcc;";
+            statusDiv.innerText = "⚙️ JRS Auto-Clicker Active";
+            document.body.appendChild(statusDiv);
+
+            // অটো-ক্লিক লজিক যা 'CONTINUAR' বাটন খুঁজে ক্লিক করবে
             setInterval(() => {
                 const elements = Array.from(document.querySelectorAll('button, a, div, span'));
-                const targetBtn = elements.find(el => el.innerText && el.innerText.trim().toUpperCase() === 'CONTINUAR');
+                const targetBtn = elements.find(el => el.innerText && (el.innerText.trim().toUpperCase() === 'CONTINUAR' || el.innerText.includes('Continue')));
                 
                 if (targetBtn) {
                     targetBtn.click();
-                    DBG.log('ACTION', 'Clicked CONTINUAR successfully!');
+                    DBG.log('ACTION', 'Clicked button automatically!');
                 }
-            }, 1500);
-
-        } else if (currentUrl.includes('aincradmods.com')) {
-            DBG.log('SCANNER', 'Aincradmods target detected...');
-            
-            setInterval(() => {
-                const elements = Array.from(document.querySelectorAll('button, a, div'));
-                const targetBtn = elements.find(el => el.innerText && (el.innerText.includes('Continue') || el.innerText.includes('Get Key')));
-                if (targetBtn) {
-                    targetBtn.click();
-                }
-            }, 1500);
+            }, 1200);
 
         } else {
-            statusDiv.innerText = "❌ No supported link found!";
-            setTimeout(() => statusDiv.remove(), 3000);
+            DBG.error('SCANNER', 'No supported link found on this page.');
+            alert(`[JRS]\n\nDeveloper: Md Jakariya Hasan\nError: No bypassable link found on this page!`);
         }
     }
 
