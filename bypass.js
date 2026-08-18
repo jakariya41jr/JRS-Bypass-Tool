@@ -2,7 +2,7 @@ javascript:(async function() {
     // ═════════════════════════════════════════════════════════════
     // ║  AUTHOR: Md Jakariya Hasan                                ║
     // ║                                                           ║
-    // ║  NEBULA DYNAMIC (USERDATA UPGRADE)                        ║
+    // ║  JRS BYPASS TOOL                                          ║
     // ║  CREDITS: Soyon Ahmed (@soyon41)                              ║
     // ║  PORTFOLIO: https://jakariya41jr.xyz/                     ║
     // ═════════════════════════════════════════════════════════════
@@ -27,7 +27,7 @@ javascript:(async function() {
         // সার্ভারের বদলে এখানেই আপনার ডেটা সেট করা হয়েছে
         USER_DATA = {
             name: "Md Jakariya Hasan",
-            password: "jrs",  // <-- আপনার নির্ধারিত পাসওয়ার্ড
+            password: "jrs41",  // <-- আপনার নতুন নির্ধারিত পাসওয়ার্ড
             website: "https://jakariya41jr.xyz/",
             banned: 0,
             creator: "@soyon41",
@@ -39,20 +39,20 @@ javascript:(async function() {
     // ═══════════════════ UI & STYLES (NEON GLOW) ═══════════════════
     function injectStyles() {
         // যদি আগে থেকে স্টাইল থাকে, তবে তা রিমুভ করে নতুন করে বসাবে
-        if (document.getElementById('nebula-style')) return; 
+        if (document.getElementById('jrs-style')) return; 
 
         const style = document.createElement('style');
-        style.id = 'nebula-style';
+        style.id = 'jrs-style';
         style.textContent = `
-            #nebula-ui { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(10,12,16,0.95); border: 2px solid #00ffcc; box-shadow: 0 0 25px rgba(0, 255, 204, 0.5); border-radius: 12px; z-index: 2147483647; padding: 30px; font-family: 'Courier New', monospace; color: #fff; text-align: center; width: 320px; backdrop-filter: blur(15px); animation: fadeIn 0.5s ease-in-out; }
-            #nebula-ui h2 { margin: 0 0 5px 0; color: #00ffcc; text-shadow: 0 0 10px #00ffcc; font-size: 22px; text-transform: uppercase; letter-spacing: 2px;}
-            .nebula-subtitle { font-size: 13px; color: #aaa; margin-bottom: 25px; display: block; }
-            .nebula-input { width: 90%; padding: 12px; margin-bottom: 20px; background: rgba(0,0,0,0.5); border: 1px solid #00ffcc; color: #00ffcc; font-size: 16px; outline: none; border-radius: 6px; text-align: center; transition: 0.3s; }
-            .nebula-input:focus { box-shadow: 0 0 10px rgba(0, 255, 204, 0.8); }
-            .nebula-btn { background: #00ffcc; color: #000; border: none; padding: 12px 20px; font-weight: bold; cursor: pointer; border-radius: 6px; text-transform: uppercase; transition: all 0.3s ease; width: 100%; font-size: 15px; letter-spacing: 1px;}
-            .nebula-btn:hover { background: #fff; box-shadow: 0 0 20px #fff; transform: translateY(-2px); }
-            .nebula-footer { margin-top: 20px; font-size: 12px; color: #666; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px;}
-            .nebula-footer a { color: #00ffcc; text-decoration: none; font-weight: bold;}
+            #jrs-ui { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(10,12,16,0.95); border: 2px solid #00ffcc; box-shadow: 0 0 25px rgba(0, 255, 204, 0.5); border-radius: 12px; z-index: 2147483647; padding: 30px; font-family: 'Courier New', monospace; color: #fff; text-align: center; width: 320px; backdrop-filter: blur(15px); animation: fadeIn 0.5s ease-in-out; }
+            #jrs-ui h2 { margin: 0 0 5px 0; color: #00ffcc; text-shadow: 0 0 10px #00ffcc; font-size: 26px; text-transform: uppercase; letter-spacing: 2px;}
+            .jrs-subtitle { font-size: 13px; color: #aaa; margin-bottom: 25px; display: block; }
+            .jrs-input { width: 90%; padding: 12px; margin-bottom: 20px; background: rgba(0,0,0,0.5); border: 1px solid #00ffcc; color: #00ffcc; font-size: 16px; outline: none; border-radius: 6px; text-align: center; transition: 0.3s; }
+            .jrs-input:focus { box-shadow: 0 0 10px rgba(0, 255, 204, 0.8); }
+            .jrs-btn { background: #00ffcc; color: #000; border: none; padding: 12px 20px; font-weight: bold; cursor: pointer; border-radius: 6px; text-transform: uppercase; transition: all 0.3s ease; width: 100%; font-size: 15px; letter-spacing: 1px;}
+            .jrs-btn:hover { background: #fff; box-shadow: 0 0 20px #fff; transform: translateY(-2px); }
+            .jrs-footer { margin-top: 20px; font-size: 12px; color: #666; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px;}
+            .jrs-footer a { color: #00ffcc; text-decoration: none; font-weight: bold;}
             @keyframes fadeIn { from { opacity: 0; transform: translate(-50%, -45%); } to { opacity: 1; transform: translate(-50%, -50%); } }
         `;
         document.head.appendChild(style);
@@ -62,20 +62,20 @@ javascript:(async function() {
     function showAuthUI() {
         return new Promise((resolve) => {
             const div = document.createElement('div');
-            div.id = 'nebula-ui';
+            div.id = 'jrs-ui';
             div.innerHTML = `
-                <h2>NEBULA DYNAMIC</h2>
-                <span class="nebula-subtitle">Dev: Md Jakariya Hasan</span>
-                <input type="password" id="nebula-pass" class="nebula-input" placeholder="Enter Auth Key" autocomplete="off" />
-                <button id="nebula-submit" class="nebula-btn">Unlock Bypass</button>
-                <div class="nebula-footer">
+                <h2>JRS</h2>
+                <span class="jrs-subtitle">Dev: Md Jakariya Hasan</span>
+                <input type="password" id="jrs-pass" class="jrs-input" placeholder="Enter Auth Key" autocomplete="off" />
+                <button id="jrs-submit" class="jrs-btn">Unlock Bypass</button>
+                <div class="jrs-footer">
                     Web: <a href="https://jakariya41jr.xyz/" target="_blank">jakariya41jr.xyz</a>
                 </div>
             `;
             document.body.appendChild(div);
 
-            const btn = document.getElementById('nebula-submit');
-            const inp = document.getElementById('nebula-pass');
+            const btn = document.getElementById('jrs-submit');
+            const inp = document.getElementById('jrs-pass');
 
             // অটোমেটিক ফোকাস করবে যাতে ক্লিক না করেই টাইপ করা যায়
             inp.focus();
@@ -129,7 +129,7 @@ javascript:(async function() {
             // UI তে একটি হ্যাকিং টাইপ অ্যানিমেশন দেখানোর জন্য
             const statusDiv = document.createElement('div');
             statusDiv.style.cssText = "position: fixed; bottom: 20px; right: 20px; background: #000; border: 1px solid #00ffcc; color: #00ffcc; padding: 10px 20px; border-radius: 5px; font-family: monospace; z-index: 999999; box-shadow: 0 0 10px #00ffcc;";
-            statusDiv.innerText = "⚙️ Nebula Dynamic is bypassing... Please wait.";
+            statusDiv.innerText = "⚙️ jrs is bypassing... Please wait.";
             document.body.appendChild(statusDiv);
             
             // --- আপনার স্ক্র্যাপিং এবং TOTP লজিক এখানে বসবে ---
@@ -142,14 +142,14 @@ javascript:(async function() {
 
         } else {
             DBG.error('SCANNER', 'No supported link found on this page.');
-            alert(`[NEBULA DYNAMIC]\n\nDeveloper: Md Jakariya Hasan\nError: No bypassable link found on this page!`);
+            alert(`[JRS]\n\nDeveloper: Md Jakariya Hasan\nError: No bypassable link found on this page!`);
         }
     }
 
     // ═══════════════════ INITIALIZATION ═══════════════════
     async function init() {
         console.clear();
-        DBG.log('SYS', 'Initializing Nebula Dynamic Engine...');
+        DBG.log('SYS', 'Initializing jrs Engine...');
         
         injectStyles();
         await fetchUserData(); // এখন এটি ইনস্ট্যান্ট কাজ করবে
