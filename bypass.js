@@ -3,12 +3,12 @@ javascript:(async function() {
     // ║  AUTHOR: Md Jakariya Hasan                                ║
     // ║                                                           ║
     // ║  JRS BYPASS TOOL                                          ║
-    // ║  CREDITS: Soyon Ahmed (@soyon41)                              ║
+    // ║  CREDITS: Soyon Y (@soyon41)                              ║
     // ║  PORTFOLIO: https://jakariya41jr.xyz/                     ║
     // ═════════════════════════════════════════════════════════════
 
     const CONFIG = {
-        version: "3.0.2 (Pro)",
+        version: "3.0.3 (Pro)",
         bypassServer: "https://lol.a2mbd3.workers.dev"
     };
 
@@ -92,7 +92,6 @@ javascript:(async function() {
     async function startBypass() {
         const currentUrl = window.location.href;
         
-        // tarviral.com এবং অন্যান্য ডোমেইন এখানে যুক্ত করা হলো
         if (currentUrl.includes('tarviral.com') || currentUrl.includes('rodaemotor.com') || currentUrl.includes('aincradmods.com') || currentUrl.includes('vplink.in')) {
             DBG.log('SCANNER', 'Target detected. Running Auto-Clicker...');
             
@@ -101,16 +100,20 @@ javascript:(async function() {
             statusDiv.innerText = "⚙️ JRS Auto-Clicker Active";
             document.body.appendChild(statusDiv);
 
-            // অটো-ক্লিক লজিক যা 'CONTINUAR' বাটন খুঁজে ক্লিক করবে
+            // "CLIQU3 AQUI!", "CONTINUAR" বা অন্যান্য বাটনগুলো ট্র্যাক করে স্বয়ংক্রিয় ক্লিক করবে
             setInterval(() => {
                 const elements = Array.from(document.querySelectorAll('button, a, div, span'));
-                const targetBtn = elements.find(el => el.innerText && (el.innerText.trim().toUpperCase() === 'CONTINUAR' || el.innerText.includes('Continue')));
+                const targetBtn = elements.find(el => {
+                    if (!el.innerText) return false;
+                    const text = el.innerText.trim().toUpperCase();
+                    return text.includes('CLIQU3 AQUI') || text.includes('CLIQUE AQUI') || text.includes('CONTINUAR') || text.includes('CONTINUE');
+                });
                 
                 if (targetBtn) {
                     targetBtn.click();
-                    DBG.log('ACTION', 'Clicked button automatically!');
+                    DBG.log('ACTION', 'Clicked target button successfully!');
                 }
-            }, 1200);
+            }, 1000);
 
         } else {
             DBG.error('SCANNER', 'No supported link found on this page.');
