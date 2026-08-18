@@ -3,7 +3,7 @@ javascript:(async function() {
     // ║  AUTHOR: Md Jakariya Hasan                                ║
     // ║                                                           ║
     // ║  JRS BYPASS TOOL                                          ║
-    // ║  CREDITS: Soyon Y (@soyon41)                              ║
+    // ║  CREDITS: Soyon Ahmed (@soyon41)                              ║
     // ║  PORTFOLIO: https://jakariya41jr.xyz/                     ║
     // ═════════════════════════════════════════════════════════════
 
